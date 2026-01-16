@@ -1,1 +1,359 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f6f7fb;
+  color: #0f172a;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+.muted {
+  color: #64748b;
+}
+
+.tiny {
+  font-size: 0.75rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.input {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.6rem;
+  background: white;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: white;
+  color: #0f172a;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn:hover {
+  background: #f1f5f9;
+}
+
+.btn.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn.danger {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: white;
+}
+
+.btn.danger:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.alert {
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  margin: 0.75rem 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+}
+
+.alert.error {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.table {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+}
+
+.row.head {
+  background: #f8fafc;
+  border-top: none;
+  font-weight: 600;
+  color: #334155;
+}
+
+.row .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.form {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  max-width: 900px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.field > span {
+  font-weight: 600;
+  color: #334155;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.actions-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(2, 6, 23, 0.06);
+}
+
+.empty {
+  background: white;
+  border: 1px dashed #cbd5e1;
+  border-radius: 0.9rem;
+  padding: 1.5rem;
+}
+
+.hint {
+  margin-top: 1rem;
+}
+
+/* App shell */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.sidebar {
+  width: 280px;
+  background: #0f172a;
+  color: white;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-mark {
+  height: 42px;
+  width: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-title {
+  font-weight: 700;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: rgba(226, 232, 240, 0.9);
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.7rem;
+}
+
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+}
+
+.nav a.active {
+  background: rgba(37, 99, 235, 0.22);
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  color: rgba(226, 232, 240, 0.8);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  background: rgba(246, 247, 251, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.topbar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.main {
+  padding: 1.25rem;
+}
+
+@media (max-width: 960px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .row {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .sidebar {
+    width: 220px;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}

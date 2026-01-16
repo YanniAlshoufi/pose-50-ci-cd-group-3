@@ -11,10 +11,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+// CORS
+// For production, restrict origins (e.g., WithOrigins("https://your-frontend")) instead of AllowAnyOrigin.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAny", policy =>
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     var cs = builder.Configuration.GetConnectionString("Default");
-    options.UseSqlite(cs);
+    if (string.IsNullOrWhiteSpace(cs))
+        throw new InvalidOperationException(
+            "Missing connection string 'ConnectionStrings:Default'. Configure it via dotnet user-secrets or environment variables.");
+
+    options.UseSqlServer(cs);
 });
 
 var app = builder.Build();
@@ -33,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAny");
 
 // API versioning via route prefix
 var apiV1 = app.MapGroup("/api/v1");
@@ -214,6 +231,15 @@ schedules.MapGet("", async (AppDbContext db) =>
         .Include(s => s.Movie)
         .Include(s => s.Actor)
         .OrderBy(s => s.Id)
+        .Select(s => new ScheduleResponse(
+            s.Id,
+            s.MovieId,
+            s.Movie!.Title,
+            s.ActorId,
+            $"{s.Actor!.FirstName} {s.Actor!.LastName}",
+            s.StartsAt,
+            s.Location
+        ))
         .ToListAsync();
 
     return Results.Ok(list);
@@ -244,7 +270,23 @@ schedules.MapPut("/{id:int}", async (int id, ScheduleUpdateRequest request, AppD
 
     await db.SaveChangesAsync();
 
-    return Results.Ok(schedule);
+    var response = await db.ScreeningSchedules
+        .AsNoTracking()
+        .Include(s => s.Movie)
+        .Include(s => s.Actor)
+        .Where(s => s.Id == schedule.Id)
+        .Select(s => new ScheduleResponse(
+            s.Id,
+            s.MovieId,
+            s.Movie!.Title,
+            s.ActorId,
+            $"{s.Actor!.FirstName} {s.Actor!.LastName}",
+            s.StartsAt,
+            s.Location
+        ))
+        .FirstAsync();
+
+    return Results.Ok(response);
 });
 
 // Delete
