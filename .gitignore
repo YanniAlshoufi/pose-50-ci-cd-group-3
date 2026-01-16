@@ -1,0 +1,47 @@
+# .NET
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.iml
+*.csproj.user
+packages/
+.nuget/
+
+# Visual Studio
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# Angular
+node_modules/
+dist/
+.angular/
+.cache/
+
+# npm
+npm-debug.log
+npm-error.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
