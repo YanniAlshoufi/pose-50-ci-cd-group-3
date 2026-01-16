@@ -12,7 +12,9 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.101'
+      - name: Switch to correct folder
+        run: cd SimpleApi
       - name: Build project
-        run: dotnet build --project SimpleApi
+        run: dotnet build 
       - name: Run tests
-        run: dotnet test --project SimpleApi
+        run: dotnet test
